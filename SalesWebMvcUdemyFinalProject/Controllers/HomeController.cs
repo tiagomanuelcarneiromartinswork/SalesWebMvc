@@ -17,7 +17,10 @@ namespace SalesWebMvcUdemyFinalProject.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Salles Web MVC App";
+            ViewData["Developer"] = "Tiago Martins";
+            ViewData["Email"] = "tiagomanuelcarneiromartins@gmail.com";
+
 
             return View();
         }
