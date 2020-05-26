@@ -3,14 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SalesWebMvcUdemyFinalProject.Services;
 
 namespace SalesWebMvcUdemyFinalProject.Controllers
 {
     public class SellersController : Controller
     {
+        private readonly SellerService _sellerService;
+
+        public SellersController(SellerService sellerService)
+        {
+            _sellerService = sellerService;
+        }
+
         public IActionResult Index()
         {
-            return View();
+
+            return View(_sellerService.FindAll());
         }
     }
 }
