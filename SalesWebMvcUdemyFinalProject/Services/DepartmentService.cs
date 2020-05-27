@@ -9,7 +9,7 @@ namespace SalesWebMvcUdemyFinalProject.Services
 {
     public class DepartmentService
     {
-        SalesWebMvcUdemyFinalProjectContext _context;
+        private readonly SalesWebMvcUdemyFinalProjectContext _context;
 
         public DepartmentService(SalesWebMvcUdemyFinalProjectContext context)
         {
