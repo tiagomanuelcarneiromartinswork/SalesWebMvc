@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using SalesWebMvcUdemyFinalProject.Models;
 using SalesWebMvcUdemyFinalProject.Models.ViewModels;
 using SalesWebMvcUdemyFinalProject.Services;
+using SalesWebMvcUdemyFinalProject.Services.Exceptions;
+
 
 namespace SalesWebMvcUdemyFinalProject.Controllers
 {
@@ -76,6 +78,47 @@ namespace SalesWebMvcUdemyFinalProject.Controllers
                 return NotFound();
             }
             return View(obj);
+        }
+
+        public IActionResult Edit(int? id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+            }
+
+            var obj = _sellerService.FindById(id.Value);
+            if(obj == null)
+            {
+                return NotFound();
+            }
+            var departments = _departmentService.FindAll();
+            var viewModel = new SellerFormViewModel {  Seller = obj , Departments = departments };
+            return View(viewModel);
+         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, Seller seller)
+        {
+            if(id != seller.Id)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                _sellerService.Update(seller);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (NotFoundException)
+            {
+                return NotFound();
+            }
+            catch (DbConcurrencyException)
+            {
+                return BadRequest();
+            }
+            
         }
     }
 }
