@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SalesWebMvcUdemyFinalProject.Data;
 
 namespace SalesWebMvcUdemyFinalProject.Migrations
 {
     [DbContext(typeof(SalesWebMvcUdemyFinalProjectContext))]
-    partial class SalesWebMvcUdemyFinalProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20200617132553_DockerDbContainer")]
+    partial class DockerDbContainer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
